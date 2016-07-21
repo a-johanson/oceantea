@@ -24,12 +24,12 @@
 \usepackage[babel=true]{csquotes}
 \usepackage{graphicx}
 
-\usepackage{todonotes}
+%\usepackage{todonotes}
 
 \linespread{1.05}
 \setkomafont{disposition}{\rmfamily}
-%\clubpenalty = 20000
-%\widowpenalty = 20000
+\clubpenalty = 20000
+\widowpenalty = 20000
 
 \addto\extrasenglish{%
 	\renewcommand{\sectionautorefname}{Section}
@@ -41,51 +41,64 @@
 \begin{document}
 
 \title{Bare\hyp{}Metal Installation of OceanTEA on Microsoft Windows}
-\author{Arne Johanson}
+%\author{Arne Johanson}
 \date{}
 
 \maketitle
 
 \section{Overview}
 
-It is assumed that you run a 64 bit version of Windows 7 or later. 
-Before installing OceanTEA itself, you will install software that is required to run OceanTEA: 
+Before installing OceanTEA itself, you need to install software that is required to run OceanTEA: 
 \begin{enumerate}
 	\item Git (version control system; \autoref{sec:git})
 	\item NodeJS (JavaScript runtime environment; \autoref{sec:node})
 	\item Anaconda (Python 3 distribution; \autoref{sec:anaconda})
 \end{enumerate}
-Afterwards, you will install OceanTEA, as is described in \autoref{sec:oceantea}. 
+After having installed these dependencies, you will install OceanTEA as described in \autoref{sec:oceantea}. 
+
 
 
 \section{Installing Git} \label{sec:git}
 
 \begin{enumerate}
 	\item Download the latest version of Git for Windows from:\\ \url{https://git-scm.com/download/win}
-	\item Run the installer and accept all default settings. Make sure that on the screen entitled \enquote{} ... is selected like in the following screenshot:
+	\item Execute the setup program to install Git with default settings. 
 \end{enumerate}
 
 
 
-\section{Installing NodeJS} \label{sec:node}
+\section{Installing Node.js} \label{sec:node}
 
 \begin{enumerate}
-	\item Download the latest version of NodeJS for Windows from:\\
+	\item Download the latest version of Node.js for Windows from:\\
 	\url{https://nodejs.org/en/download/current/}
-	\item Run the setup program and install NodeJS with default settings.
+	\item Execute the setup program to install Node.js with default settings. 
 \end{enumerate}
+
 
 
 \section{Installing Anaconda} \label{sec:anaconda}
 
-Download the latest version of Anaconda with Python 3 for Windows from:\\
-\url{https://www.continuum.io/downloads#_windows}\\
-Make sure to download the version that comes with Python 3 and \emph{not} with Python 2!
+\begin{enumerate}
+	\item Download the latest version of Anaconda \textbf{with Python~3} for Windows from:\\
+	\url{https://www.continuum.io/downloads#_windows}\\
+	Make sure to download the version that comes with Python~3 and \emph{not} with Python~2!
+	\item Execute the setup program to install Anaconda with default settings. 
+\end{enumerate}
+
+
 
 
 \section{Installing OceanTEA} \label{sec:oceantea}
 
-
+\begin{enumerate}
+	\item Download the ZIP archive \texttt{oceantea\_bm.zip} from:\\
+	\url{https://github.com/a-johanson/oceantea/raw/master/install/bare-metal/windows/oceantea_bm.zip}
+	\item Extract the archive to any folder you have write access to (e.g., your Desktop).
+	\item Navigate to the extracted files in the Explorer and execute \texttt{install\_oceantea\_bm.bat} by double\hyp{}clicking it.
+	\item Wait for the installation process to complete. After it finishes, your default web drowser should open displaying the OceanTEA user interface. 
+	To start or stop OceanTEA, execute \texttt{start\_oceantea\_bm.bat} or \texttt{stop\_oceantea\_bm.bat}, respectively.
+\end{enumerate}
 
 
 \end{document}
