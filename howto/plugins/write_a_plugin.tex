@@ -1,0 +1,117 @@
+\documentclass[11pt,a4paper,english,oneside,parskip=false]{scrartcl} %parskip=half
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+%\usepackage[a4paper, top=24mm, bottom=24mm, left=24mm, right=24mm]{geometry}
+
+%\usepackage{mathpazo}
+\usepackage{helvet}
+
+\usepackage{hyphenat}
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{%
+	final=true,%
+	colorlinks=true,%
+	linkcolor=black,%
+	citecolor=black,%
+	urlcolor=black,%
+}
+\usepackage[babel=true]{csquotes}
+\usepackage{graphicx}
+
+%\usepackage{todonotes}
+
+\linespread{1.05}
+\renewcommand{\familydefault}{\sfdefault}
+\fontfamily{phv}\selectfont
+%\setkomafont{disposition}{\rmfamily}
+\clubpenalty = 20000
+\widowpenalty = 20000
+
+\addto\extrasenglish{%
+	\renewcommand{\sectionautorefname}{Section}
+	\renewcommand{\subsectionautorefname}{Section}
+	\renewcommand{\subsubsectionautorefname}{Section}
+}
+
+\usepackage{enumitem}
+\newlist{compactitemize}{itemize}{3}
+\setlist[compactitemize]{nosep,label={\raisebox{.1em}{\small\textbullet}}}
+\newlist{compactenumerate}{enumerate}{3}
+\setlist[compactenumerate]{nosep,label=\arabic*.}
+
+
+\begin{document}
+
+\title{Implementing a Plug\hyp{}In Service for OceanTEA}
+%\author{Arne Johanson}
+\date{}
+
+\maketitle
+
+Custom functionality can be included into the user interface of OceanTEA by implementing a plug\hyp{}in (micro-)service. 
+After registering such a service with the OceanTEA API gateway, its functionality can be accessed via a new tab in OceanTEA. 
+
+An example of such a plug\hyp{}in service is the OceanTEA Coral Analysis service,\footnote{\url{https://github.com/a-johanson/oceantea-coral-analysis}} which offers an interactive illustration of research results to accompany a scientific paper.
+
+\section{Implement Your Service}
+
+You can use any technology to develop a plug\hyp{}in service for OceanTEA as long as it provides a RESTful API accessible via HTTP which adheres to the following rules: 
+\begin{enumerate}
+	\item All REST endpoints your service provides must be prefixed with a fixed \texttt{APIPrefix} such as \texttt{/coral\_analysis}:\\
+	\texttt{<APIPrefix>/path/to/your/endpoint}\\
+	In this way, the API gateway of OceanTEA knows which requests are supposed to be routed to your service. 
+	\item Your service must provide an HTML fragment at the URL\\
+	\texttt{<APIPrefix>/static/index.html}\\
+	which renders your tab within OceanTEA. 
+	This fragment is included into the body of the main view template of OceanTEA.\footnote{\url{https://github.com/a-johanson/oceantea-visualization-gateway/blob/master/views/layouts/main.handlebars}}
+	\item Any static content that you need to include into your view must be served by your service at the URL:\\
+	\texttt{<APIPrefix>/static/<pathToContent>}\\
+	From within your \texttt{index.html} fragment, any static content is to be addressed using exactly the same \emph{relative} URL \texttt{<APIPrefix>/static/<pathToContent>} (this results in the requests being routed through the API gateway). 
+	%\item TODO: Authentication/Authorization
+\end{enumerate}
+
+
+\section{Integrate Your Service With OceanTEA} \label{sec:git}
+
+To make your service known to OceanTEA, you have to register it with the OceanTEA API gateway. 
+This is done by adding an entry to the \texttt{plugins} array in \texttt{plugins.js}.\footnote{\url{https://github.com/a-johanson/oceantea-visualization-gateway/blob/master/plugins.js}} 
+Such an entry needs to be structured as follows:\footnote{For a full working example, see:\\ \url{https://github.com/a-johanson/oceantea-visualization-gateway/blob/master/plugins.js.corals}} 
+\begin{verbatim}
+{
+  tabName: "P. arborea Activity",
+  guiURL: "/p_arborea_activity.html",
+  apiPrefix: "/coral_analysis",
+  serviceName: "oceantea-coral-analysis",
+  serviceHost: "localhost",
+  servicePort: "3340",
+  templateParameters: {
+    libD3js : true,
+    libCanvasPlot: true
+  }
+}
+\end{verbatim}
+
+The field \texttt{tabName} is the text to be displayed on your plug\hyp{}in tab in the OceanTEA GUI. 
+\texttt{guiURL} is the URL at which your tab is located, and \texttt{apiPrefix} is the API prefix discussed in the previous section. 
+\texttt{serviceName} is a unique identifier of your service to be used, for example, with service registries and with Docker. 
+\texttt{serviceHost} and \texttt{servicePort} describe how to connect to your service. 
+
+\texttt{templateParameters} are additional parameters to be passed to the main view template of OceanTEA to, e.g., load predefined libraries. 
+The following parameters are available:
+\begin{compactitemize}
+	\item \texttt{libD3js: true}
+	\item \texttt{libCanvasPlot: true}
+	\item \texttt{libFontAwesome: true}
+	\item \texttt{libBootstrapJS: true}
+	\item \texttt{libBootstrapSlider: true}
+\end{compactitemize}
+By default, jQuery\footnote{\url{https://jquery.com}} and the Bootstrap\footnote{\url{https://getbootstrap.com}} CSS are loaded. 
+
+\end{document}
