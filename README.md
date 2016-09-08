@@ -2,10 +2,25 @@
 
 OceanTEA leverages modern web technology to enable the interactive exploration and analysis of high-dimensional oceanographic datasets. Its microservice architecture ensures a maintainable implementation that seamlessly scales from desktop computers to cloud computing infrastructure. 
 
-A live demo of OceanTEA is available at: <http://skeggi.de:3333/>
+A live demo of OceanTEA is available at: <http://samoa.informatik.uni-kiel.de:3333/>
 
 OceanTEA is licensed under the [Apache License Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
-## Installing OceanTEA
+# How to install OceanTEA on...
 
-Use the install scripts in the repository [oceantea-build](https://github.com/a-johanson/oceantea-build) to install OceanTEA either locally (requires [NodeJS](https://nodejs.org/) and a Python 3 distribution such as [Anaconda](https://www.continuum.io/downloads)) or using Docker containers with [Docker Machine](https://www.docker.com/products/docker-toolbox).
+## ... Mac OS using Docker
+
+1. Download and install [Docker for Mac](https://docs.docker.com/docker-for-mac/)
+2. Download the [OceanTEA installation scripts](https://github.com/a-johanson/oceantea/raw/master/scripts/oceantea_docker_mac.zip) and extract the ZIP archive
+3. To make all downloaded scripts executalbe, execute from a Terminal: `chmod a+x *.sh`
+4. From a Terminal, run
+  * [start.sh](https://github.com/a-johanson/oceantea-build/blob/master/docker/start.sh) to start OceanTEA
+  * [stop.sh](https://github.com/a-johanson/oceantea-build/blob/master/docker/stop.sh) to stop OceanTEA
+
+## ... Windows 10 using Docker
+
+1. Download and install [Docker for Windows](https://docs.docker.com/docker-for-windows/)
+2. Download the [OceanTEA installation scripts](https://github.com/a-johanson/oceantea/raw/master/scripts/oceantea_docker_windows.zip) and extract the ZIP archive
+3. Run
+  * [start.bat](https://github.com/a-johanson/oceantea-build/blob/master/docker/windows/start.bat) to start OceanTEA
+  * [stop.bat](https://github.com/a-johanson/oceantea-build/blob/master/docker/windows/stop.bat) to stop OceanTEA
