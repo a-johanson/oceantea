@@ -19,6 +19,8 @@ OceanTEA is licensed under the [Apache License Version 2.0](https://www.apache.o
 
 Note that Docker for Mac must be running in order for OceanTEA to work.
 
+To manage time series, sign in using the username `OTEAUser` with password `default`.
+
 ## ... Windows 10 using Docker
 
 1. Download and install [Docker for Windows](https://docs.docker.com/docker-for-windows/)
@@ -26,3 +28,5 @@ Note that Docker for Mac must be running in order for OceanTEA to work.
 3. Run
   * [start.bat](https://github.com/a-johanson/oceantea-build/blob/master/docker/windows/start.bat) to start OceanTEA
   * [stop.bat](https://github.com/a-johanson/oceantea-build/blob/master/docker/windows/stop.bat) to stop OceanTEA
+
+To manage time series, sign in using the username `OTEAUser` with password `default`.
