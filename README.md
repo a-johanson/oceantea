@@ -17,7 +17,7 @@ OceanTEA is licensed under the [Apache License Version 2.0](https://www.apache.o
   * [start.sh](https://github.com/a-johanson/oceantea-build/blob/master/docker/start.sh) to start OceanTEA
   * [stop.sh](https://github.com/a-johanson/oceantea-build/blob/master/docker/stop.sh) to stop OceanTEA
 
-  Note that Docker for Mac must be running in order for OceanTEA to work.
+Note that Docker for Mac must be running in order for OceanTEA to work.
 
 ## ... Windows 10 using Docker
 
