@@ -2,7 +2,7 @@
 
 OceanTEA leverages modern web technology to enable the interactive exploration and analysis of high-dimensional oceanographic datasets. Its microservice architecture ensures a maintainable implementation that seamlessly scales from desktop computers to cloud computing infrastructure. 
 
-A live demo of OceanTEA is available at: <http://samoa.informatik.uni-kiel.de:3333/>
+A live demo of OceanTEA is available at: <http://maui.se.informatik.uni-kiel.de:9090/>
 
 OceanTEA is licensed under the [Apache License Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
