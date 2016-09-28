@@ -29,6 +29,4 @@ To manage time series, sign in using the username `OTEAUser` with password `defa
   * [start.bat](https://github.com/a-johanson/oceantea-build/blob/master/docker/windows/start.bat) to start OceanTEA
   * [stop.bat](https://github.com/a-johanson/oceantea-build/blob/master/docker/windows/stop.bat) to stop OceanTEA
 
-**Note that Docker for Windows must be running in order for OceanTEA to work.**
-
 To manage time series, sign in using the username `OTEAUser` with password `default` in the "Manage Time Series" tab.
